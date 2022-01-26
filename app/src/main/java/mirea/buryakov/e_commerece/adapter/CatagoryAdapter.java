@@ -1,11 +1,13 @@
 package mirea.buryakov.e_commerece.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import mirea.buryakov.e_commerece.MainActivity;
 import mirea.buryakov.e_commerece.R;
 import mirea.buryakov.e_commerece.model.Category;
 
@@ -32,8 +34,15 @@ public class CatagoryAdapter extends RecyclerView.Adapter<CatagoryAdapter.Catego
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.categoryTitle.setText(categories.get(position).getTitle());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.showCoursesByCategory(categories.get(position).getId());
+            }
+        });
     }
 
     @Override
